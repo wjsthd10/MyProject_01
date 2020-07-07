@@ -3,6 +3,7 @@ package kr.co.song1126.myproject_01;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -12,6 +13,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     CircularImageView iv;
+    GoogleSignInClient mGoogleSignInClient;
 
 
     @Override
@@ -45,7 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
         Session.getCurrentSession().addCallback(sessionCallback);
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
     }
+
+
+
 
     ISessionCallback sessionCallback=new ISessionCallback() {
         @Override
@@ -86,9 +100,11 @@ public class MainActivity extends AppCompatActivity {
                 //사용자 아이디와 프로필 사진의주소 값을 맴버로 저장만 함.
                 //Glide.with(MainActivity.this).load(imgUrl).into(iv);
 
+
             }
         });
     }
+
 
 
     //키해시 받기
@@ -109,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
 
 
 
