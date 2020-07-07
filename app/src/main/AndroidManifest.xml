@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".MyKakaoLogin"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        카카오 앱키 등록-->
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="7748ff92b5bccb91ec8fac16672bc6a7"/>
     </application>
 
 </manifest>
