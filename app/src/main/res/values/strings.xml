@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">MyProject_01</string>
+    
+    <string-array name="spinnerItem">
+        <item>전체 분류</item>
+        <item>무협</item>
+        <item>판타지</item>
+        <item>퓨전</item>
+        <item>게임</item>
+        <item>스포츠</item>
+        <item>로멘스</item>
+        <item>라이트노벨</item>
+        <item>현대판타지</item>
+        <item>대체역사</item>
+        <item>전쟁/밀리터리</item>
+        <item>SF</item>
+        <item>추리</item>
+        <item>공포/미스테리</item>
+        <item>일반소설</item>
+        <item>시/수필</item>
+        <item>중/단편</item>
+        <item>아동소설/동화</item>
+        <item>드라마</item>
+        <item>연극/시나리오</item>
+    </string-array>
 </resources>

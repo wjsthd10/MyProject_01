@@ -6,21 +6,21 @@
         android:id="@+id/moon"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/moon"
+        android:icon="@mipmap/ic_launcher_round"
         android:title="문피아"/>
 
     <item
         android:id="@+id/kakao"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/kakaopage"
+        android:icon="@mipmap/kakao_icon_round"
         android:title="카카오페이지" />
 
     <item
         android:id="@+id/series"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/series"
+        android:icon="@mipmap/series_icon_round"
         android:title="시리즈"/>
 
 </menu>

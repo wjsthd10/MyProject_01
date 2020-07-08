@@ -28,7 +28,7 @@
                 android:src="@drawable/ic_dehaze_black_24dp" />
 
             <TextView
-                android:id="@+id/nickName"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -88,6 +88,7 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -96,11 +97,10 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-
         android:id="@+id/bottomNav"
         app:menu="@menu/items_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

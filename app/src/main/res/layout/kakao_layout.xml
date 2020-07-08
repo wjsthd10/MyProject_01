@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner01"
+        android:id="@+id/spinner02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </androidx.appcompat.widget.AppCompatSpinner>
 
     <ImageView
-        android:id="@+id/ivTest"
-        android:src="@drawable/moon"
+        android:id="@+id/iv_kakao"
+        android:src="@drawable/kakaopage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
