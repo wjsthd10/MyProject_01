@@ -21,6 +21,13 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"/>
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googlLogin"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/kakaoLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
 
 
 
