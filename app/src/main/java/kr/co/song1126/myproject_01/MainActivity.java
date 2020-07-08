@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     CircularImageView iv;
     GoogleSignInClient mGoogleSignInClient;
+    String userName;
+    String imgUrl;
 
     public static int RC_SIGN_IN=9001;
 
@@ -135,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Profile profile=userAccount.getProfile();
                 if (profile==null) return;
-                String userName=profile.getNickname();
-                String imgUrl=profile.getProfileImageUrl();
+                userName=profile.getNickname();
+                imgUrl=profile.getProfileImageUrl();
 
                 //사용자 아이디와 프로필 사진의주소 값을 맴버로 저장만 함.
                 //Glide.with(MainActivity.this).load(imgUrl).into(iv);
@@ -168,6 +170,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    public void clickNonAccount(View view) {
+        Intent intent=new Intent(this, MainPageActivity.class);
+        intent.putExtra("kakaoName", userName);
+        intent.putExtra("kakaoImg", imgUrl);
+        startActivityForResult(intent, 100);
+    }
 }

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.co.song1126.myproject_01">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyKakaoLogin"
@@ -13,17 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".MainPageActivity">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        카카오 앱키 등록-->
+        </activity> <!-- 카카오 앱키 등록 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="7748ff92b5bccb91ec8fac16672bc6a7"/>
+            android:value="7748ff92b5bccb91ec8fac16672bc6a7" />
     </application>
 
 </manifest>
