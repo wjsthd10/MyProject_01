@@ -86,14 +86,15 @@
 
     </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/lay"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
 
-    </androidx.viewpager.widget.ViewPager>
+    </LinearLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
