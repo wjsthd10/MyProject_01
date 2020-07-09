@@ -38,7 +38,6 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/seriesAdd"
             android:backgroundTint="#00E804"
-            android:onClick="clickAddSeries"
             android:src="@drawable/ic_edit_kakao_24dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"

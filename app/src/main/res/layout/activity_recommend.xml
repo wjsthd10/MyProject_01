@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecommendActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_add"
+        android:background="#5DF480"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/upButton"
+                android:clickable="true"
+                android:onClick="clickUpButton"
+                android:src="@drawable/ic_chevron_left_black_24dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+            <TextView
+                android:text="추천글 작성"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#ff000000"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/addButton"
+                android:text="등 록"
+                android:onClick="clickAdd"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="#ffffffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/bookImg"
+            android:clickable="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_image_black_24dp"
+            android:background="@drawable/bg_edit01"
+            android:onClick="setBookImg"
+            android:layout_width="140dp"
+            android:layout_height="140dp"/>
+
+        <EditText
+            android:id="@+id/edit_bookName"
+            android:layout_margin="20dp"
+            android:inputType="text"
+            android:hint="도서명"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:background="@drawable/bg_edit01"
+            android:layout_toRightOf="@id/bookImg"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/edit_Authorname"
+            android:layout_marginLeft="20dp"
+            android:inputType="text"
+            android:hint="저자명"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:background="@drawable/bg_edit01"
+            android:layout_toRightOf="@id/bookImg"
+            android:layout_below="@id/edit_bookName"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/edit_spinner"
+            android:layout_below="@id/edit_Authorname"
+            android:layout_toRightOf="@id/bookImg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/line1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_below="@id/bookImg"
+            android:layout_height="1dp"
+            android:background="#D1D1D1"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:layout_margin="16dp"
+        android:textSize="20sp"
+        android:hint="제목을 입력하세요."
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:background="@drawable/bg_edit01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edit_msg"
+        android:layout_weight="1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="20sp"
+        android:hint="내용을 입력해주세요.(500자)"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:maxEms="500"
+        android:padding="5dp"
+        android:background="@drawable/bg_edit01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+   <LinearLayout
+       android:paddingRight="25dp"
+       android:paddingBottom="8dp"
+       android:gravity="right"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+
+       <TextView
+           android:text="글자수 "
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+
+       <TextView
+           android:id="@+id/textNum"
+           android:text="0"
+           android:textColor="#ffff0000"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+       <TextView
+           android:text="자"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+   </LinearLayout>
+
+
+</LinearLayout>

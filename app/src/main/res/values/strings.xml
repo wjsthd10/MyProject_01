@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyProject_01</string>
-    
+
     <string-array name="spinnerItem">
         <item>전체 분류</item>
         <item>무협</item>
