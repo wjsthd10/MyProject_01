@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MunpiaRecommendActivity"></activity>
+        <activity android:name=".ClickRecyclerItemActivity"></activity>
+        <activity android:name=".MyRecommendActivity" />
+        <activity android:name=".MyPageActivity" />
+        <activity android:name=".MunpiaRecommendActivity" />
         <activity android:name=".KakaoRecommendActivity" />
         <activity android:name=".RecommendActivity" />
         <activity android:name=".MainPageActivity" />

@@ -2,31 +2,31 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="#7BC4F8B5"
+    app:cardBackgroundColor="#7BB7B8B7"
     android:elevation="2dp"
     android:layout_width="match_parent"
     android:layout_height="120dp">
 
     <RelativeLayout
-        android:id="@+id/series_item_layout"
+        android:id="@+id/my_item_layout"
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
 
         <ImageView
-            android:id="@+id/series_item_iv"
-            android:src="@drawable/series"
+            android:id="@+id/my_item_iv"
+            android:src="@drawable/ic_launcher_foreground"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_width="80dp"
             android:layout_height="95dp"/>
 
         <TextView
-            android:id="@+id/series_item_title"
+            android:id="@+id/my_item_title"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/series_item_iv"
+            android:layout_toRightOf="@id/my_item_iv"
             android:text="추천글 제목 표기란"
             android:ellipsize="end"
             android:maxLines="1"
@@ -37,17 +37,17 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
-            android:id="@+id/series_DB_item_list"
+            android:id="@+id/my_DB_item_list"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/series_item_iv"
-            android:layout_below="@id/series_item_title"
+            android:layout_toRightOf="@id/my_item_iv"
+            android:layout_below="@id/my_item_title"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/series_DB_Kategorie"
+                android:id="@+id/my_DB_Kategorie"
                 android:textSize="13sp"
                 android:layout_marginRight="5dp"
                 android:text="kategorie"
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/series_line1"
+                android:id="@+id/tv_line01"
                 android:background="#ACACAC"
                 android:layout_marginRight="5dp"
                 android:maxLines="1"
@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"/>
 
             <TextView
-                android:id="@+id/series_DB_bookName"
+                android:id="@+id/my_DB_bookName"
                 android:layout_marginRight="5dp"
                 android:textSize="13sp"
                 android:text="bookName"
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/series_line2"
+                android:id="@+id/tv_line02"
                 android:background="#ACACAC"
                 android:layout_marginRight="5dp"
                 android:layout_width="1dp"
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"/>
 
             <TextView
-                android:id="@+id/series_DB_date"
+                android:id="@+id/my_DB_date"
                 android:layout_marginRight="5dp"
                 android:textSize="13sp"
                 android:text="07.02"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/series_line3"
+                android:id="@+id/tv_line03"
                 android:background="#ACACAC"
                 android:layout_marginRight="5dp"
                 android:layout_width="1dp"
@@ -96,7 +96,7 @@
                 android:layout_height="match_parent"/>
 
             <TextView
-                android:id="@+id/series_views"
+                android:id="@+id/my_views"
                 android:layout_marginRight="5dp"
                 android:text="views : "
                 android:textSize="13sp"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/series_DB_views"
+                android:id="@+id/my_DB_views"
                 android:layout_marginRight="5dp"
                 android:textSize="13sp"
                 android:text="200,000"
@@ -116,6 +116,16 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_margin="16dp"
+            android:id="@+id/my_delete"
+            android:clickable="true"
+            android:text="삭제"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

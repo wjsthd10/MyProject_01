@@ -95,7 +95,7 @@ public class RecommendActivity extends AppCompatActivity {
         intent.setType("image/*");
 
         startActivityForResult(intent, GALLERY);
-
+        //갤러리 + 카메라 작업 추가?
     }
 
     @Override

@@ -74,7 +74,7 @@ public class KakaoRecommendActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //  서버로 데이터 보내는 코드 작성
+                //todo  서버로 데이터 보내는 코드 작성
             }
         });
 

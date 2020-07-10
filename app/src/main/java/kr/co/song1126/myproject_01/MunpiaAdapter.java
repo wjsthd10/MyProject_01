@@ -60,6 +60,8 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
         TextView bookName;
         TextView date;
         TextView views;
+        TextView line1,line2,line3;
+        TextView views01;
 
 
         public VH(@NonNull View itemView) {
@@ -71,6 +73,11 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
             bookName=itemView.findViewById(R.id.munpia_DB_bookName);
             date=itemView.findViewById(R.id.munpia_DB_date);
             views=itemView.findViewById(R.id.munpia_DB_views);
+            line1=itemView.findViewById(R.id.munpia_line1);
+            line2=itemView.findViewById(R.id.munpia_line2);
+            line3=itemView.findViewById(R.id.munpia_line3);
+            views01=itemView.findViewById(R.id.munpia_views);
+
         }
     }
 

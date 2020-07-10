@@ -63,6 +63,8 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         TextView bookName;
         TextView date;
         TextView views;
+        TextView line1,line2,line3;
+        TextView views01;
 
         public VH(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +75,11 @@ public class SeriesAdapter extends RecyclerView.Adapter {
             bookName=itemView.findViewById(R.id.series_DB_bookName);
             date=itemView.findViewById(R.id.series_DB_date);
             views=itemView.findViewById(R.id.series_DB_views);
+            line1=itemView.findViewById(R.id.series_line1);
+            line2=itemView.findViewById(R.id.series_line2);
+            line3=itemView.findViewById(R.id.series_line3);
+            views01=itemView.findViewById(R.id.series_views);
+
 
         }
     }

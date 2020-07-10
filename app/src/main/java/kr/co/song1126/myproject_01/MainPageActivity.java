@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,6 +63,13 @@ public class MainPageActivity extends AppCompatActivity {
                         title.setText("문 피 아");
                         Glide.with(MainPageActivity.this).load(R.drawable.ic_home_black_24dp).into(titleIV);
                         toolbar.setBackgroundColor(0xFF033CDA);//FFFBDB08//FF06ED2C
+                        titleIV.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(MainPageActivity.this, MainPageActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         transaction.replace(R.id.lay, fragments[0]);
                         break;
 
@@ -72,6 +80,13 @@ public class MainPageActivity extends AppCompatActivity {
                         toolbar.setBackgroundColor(0xFFFBDB08);//FFFBDB08//FF06ED2C
                         transaction.replace(R.id.lay, fragments[1]);
                         Glide.with(MainPageActivity.this).load(R.drawable.ic_home_black_24dp).into(titleIV);
+                        titleIV.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(MainPageActivity.this, MainPageActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         break;
 
                     case R.id.series:
@@ -80,6 +95,13 @@ public class MainPageActivity extends AppCompatActivity {
                         title.setText("시 리 즈");
                         toolbar.setBackgroundColor(0xFF06ED2C);//FFFBDB08//FF06ED2C
                         Glide.with(MainPageActivity.this).load(R.drawable.ic_home_black_24dp).into(titleIV);
+                        titleIV.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(MainPageActivity.this, MainPageActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         transaction.replace(R.id.lay, fragments[2]);
                         break;
                 }
@@ -96,11 +118,13 @@ public class MainPageActivity extends AppCompatActivity {
 
 
     public void clickMyPage(View view) {
+        Intent intent=new Intent(this, MyPageActivity.class);
+        startActivity(intent);
 
     }
 
     public void clickSearch(View view) {
-
+        //todo 검색창 엑티비티 만들기
 
     }
 
