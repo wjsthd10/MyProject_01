@@ -133,6 +133,7 @@
                 android:background="#959595"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"/>
+<!--            todo 여기까지함-->
 
         </LinearLayout>
 
