@@ -96,9 +96,12 @@ public class MainPageActivity extends AppCompatActivity {
 
 
     public void clickMyPage(View view) {
+
     }
 
     public void clickSearch(View view) {
+
+
     }
 
 

@@ -25,7 +25,6 @@ public class SeriesFragment extends Fragment {
     Spinner spinner;
     Context context;
 
-
     RecyclerView recyclerView;
     ArrayList<MyBookItems> items=new ArrayList<>();
     SeriesAdapter seriesAdapter;
@@ -45,7 +44,6 @@ public class SeriesFragment extends Fragment {
         View view=inflater.inflate(R.layout.series_layout,container, false);
         recyclerView=view.findViewById(R.id.series_recycler);
         seriesAdapter=new SeriesAdapter(context, items);
-        recyclerView.setAdapter(seriesAdapter);
         actionButton=view.findViewById(R.id.seriesAdd);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +60,8 @@ public class SeriesFragment extends Fragment {
         spinner.getScrollBarSize();
         spinner.setAdapter(adapter);
 
+
+        recyclerView.setAdapter(seriesAdapter);
 
         return view;
     }
