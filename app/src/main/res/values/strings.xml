@@ -23,4 +23,11 @@
         <item>드라마</item>
         <item>연극/시나리오</item>
     </string-array>
+
+    <string-array name="report">
+        <item>홍보, 광고 기타</item>
+        <item>종교, 정치 기타 금기사항</item>
+        <item>선정(19금), 폭력적인 내용</item>
+        <item>기타(직접작성 : 최대 1,000자)</item>
+    </string-array>
 </resources>

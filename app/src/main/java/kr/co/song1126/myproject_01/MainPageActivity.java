@@ -125,6 +125,9 @@ public class MainPageActivity extends AppCompatActivity {
 
     public void clickSearch(View view) {
         //todo 검색창 엑티비티 만들기
+        Intent intent=new Intent(this, ClickRecyclerItemActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

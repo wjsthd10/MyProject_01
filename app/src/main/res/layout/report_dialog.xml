@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:text="신고사유"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="#A6A6A6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:maxLines="1"
+            android:text="장난 또는 허위 신고시 불이익을 받을 수 있습니다."
+            android:textColor="#ff222222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#B3B3B3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <RadioGroup
+        android:id="@+id/group_btn"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio01"
+            android:layout_margin="8dp"
+            android:text="홍보, 광고 기타"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/radio02"
+            android:layout_margin="8dp"
+            android:text="종교, 정치 기타 금기사항"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/radio03"
+            android:layout_margin="8dp"
+            android:text="선정(19금), 폭력적인 내용"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:layout_margin="8dp"
+            android:id="@+id/radio04"
+            android:text="기타(직접 작성 : 최대 1,000자)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/report_edit"
+            android:maxEms="1000"
+            android:gravity="top"
+            android:maxHeight="50dp"
+            android:padding="8dp"
+            android:hint="신고내용 작접 작성"
+            android:inputType="textMultiLine"
+            android:background="@drawable/bg_edit01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cancelReport_dialog"
+                android:padding="8dp"
+                android:text="취소"
+                android:textColor="#9A9A9A"
+                android:background="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/report_btn"
+                android:padding="8dp"
+                android:background="#FFFFFF"
+                android:text="신고하기"
+                android:textColor="#6FDDD2"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RadioGroup>
+
+
+
+</LinearLayout>
