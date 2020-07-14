@@ -160,13 +160,13 @@
 
                 <TextView
                     android:layout_marginLeft="4dp"
-                    android:id="@+id/recommendFaber"
+                    android:id="@+id/recommendFavorites"
                     android:text="공감수 "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/recommendFabers"
+                    android:id="@+id/recommendFavorite"
                     android:text="26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -191,8 +191,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:clickable="true"
+                    android:onClick="bigImg"
                     android:id="@+id/bookimg_view"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/kakaopage"
                     android:layout_width="130dp"
                     android:layout_height="130dp"/>
 
@@ -236,37 +238,46 @@
                 android:layout_height="wrap_content"/>
 
             <LinearLayout
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:padding="8dp"
                     android:id="@+id/det_view"
                     android:clickable="true"
                     android:onClick="clickDet"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_chat_24dp"
-                    android:background="#68C15D"
+                    android:src="@drawable/ic_chat_02"
+                    app:civ_border_width="16dp"
+                    app:civ_border_color="#53CF5A"
+                    app:civ_circle_background_color="#53CF5A"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:clickable="true"
+                    android:padding="8dp"
                     android:onClick="clickThumb"
                     android:id="@+id/thumb_view"
                     android:layout_marginRight="10dp"
+                    app:civ_border_width="16dp"
+                    app:civ_border_color="#4496D5"
+                    app:civ_circle_background_color="#4496D5"
                     android:src="@drawable/ic_thumb_up_24dp"
-                    android:background="#5878BC"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/go_recommend_view"
+                    android:padding="8dp"
                     android:clickable="true"
                     android:onClick="clickGoRecommend"
                     android:src="@drawable/ic_library_24dp"
-                    android:background="#B478D5"
+                    app:civ_border_color="#B478D5"
+                    app:civ_circle_background_color="#B478D5"
+                    app:civ_border_width="16dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 

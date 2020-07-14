@@ -47,6 +47,8 @@ public class MainPageActivity extends AppCompatActivity {
         fragmentlayout=findViewById(R.id.lay);
         titleIV=findViewById(R.id.ic_mypage);
 
+
+
         //바텀네비게이션
         BottomNavigationView bottomNav=findViewById(R.id.bottomNav);
 
@@ -72,6 +74,7 @@ public class MainPageActivity extends AppCompatActivity {
                         });
                         transaction.replace(R.id.lay, fragments[0]);
                         break;
+
 
                     case R.id.kakao:
                         layout.setVisibility(View.GONE);
@@ -115,7 +118,15 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (G.googleLoginIn) {
+            title.setText(G.loginP.getString("Name", ""));
+        }else if (G.kakaoLoginIn){
+            title.setText(G.loginP.getString("Name", ""));
+        }else title.setText("익명");
+    }
 
     public void clickMyPage(View view) {
         Intent intent=new Intent(this, MyPageActivity.class);
@@ -125,9 +136,9 @@ public class MainPageActivity extends AppCompatActivity {
 
     public void clickSearch(View view) {
         //todo 검색창 엑티비티 만들기
+        //아래는 다른 액티비티 열어놨음
         Intent intent=new Intent(this, ClickRecyclerItemActivity.class);
         startActivity(intent);
-        finish();
 
     }
 
