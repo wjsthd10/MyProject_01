@@ -37,6 +37,16 @@ public class SeriesFragment extends Fragment {
         this.context = context;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +55,8 @@ public class SeriesFragment extends Fragment {
         recyclerView=view.findViewById(R.id.series_recycler);
         seriesAdapter=new SeriesAdapter(context, items);
         actionButton=view.findViewById(R.id.seriesAdd);
+
+
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

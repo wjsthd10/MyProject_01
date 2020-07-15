@@ -84,15 +84,9 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         //신고 다이얼로그
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
-
         LayoutInflater inflater=(LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-
         View v=inflater.inflate(R.layout.report_dialog, null);
-
-
-
         builder.setView(v);
-
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -105,10 +99,6 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 //                //신고버튼
-//                radioButton01=(RadioButton) v.findViewById(R.id.radio01);
-//                radioButton02=(RadioButton)v.findViewById(R.id.radio02);
-//                radioButton03=(RadioButton)v.findViewById(R.id.radio03);
-//                radioButton04=(RadioButton)v.findViewById(R.id.radio04);
                 reportEt=(EditText) v.findViewById(R.id.report_edit);
                 rg=v.findViewById(R.id.group_btn);
 
@@ -118,18 +108,15 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
                 rb=rg.findViewById(checkedID);
                 buttonText=rb.getText().toString();
 
-                //Toast.makeText(ClickRecyclerItemActivity.this, buttonText+" : "+reportData, Toast.LENGTH_SHORT).show();
-
+                //  Toast.makeText(ClickRecyclerItemActivity.this, buttonText+" : "+reportData, Toast.LENGTH_SHORT).show();
                 //  buttonText : 라디오 버튼택스트, reportData : 직접작성한 신고내용
                 //  todo  관리자 서버로 보내기
 
+                dialog.cancel();
             }
         });
-
-
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
-
     }
 
     public void clickUpButton(View view) {
@@ -142,7 +129,6 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         Intent intent=new Intent(this, MainPageActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     public void clickDet(View view) {
@@ -152,10 +138,8 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     }
 
     public void clickThumb(View view) {
-        //공감버튼누르면 토스트로 알려주고 데이터 베이스에 공감 수 ++시키기 다시 누르면 --
-
-
-
+        //1. 공감버튼누르면 토스트로 알려주고 데이터 베이스에 공감 수 ++시키기 다시 누르면 --
+        //2. 둘중에 하나라도 누르면 변경 불가능하게 만들기.
         if (checkedThumd==0){
             Toast.makeText(this, "공감하셨습니다.", Toast.LENGTH_SHORT).show();
             Glide.with(this).load(R.drawable.ic_thumb_up_red_24dp).into(thumd);
@@ -173,6 +157,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         //없으면 다이얼로그로 알려주기
     }
 
+    //이미지 크게보기
     public void bigImg(View view) {
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -184,8 +169,6 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         ImageView imageView=view1.findViewById(R.id.dialogImg);
         Picasso.get().load(bookImgUrl).into(imageView);
 //        Glide.with(this).load(R.drawable.series).into(imageView);
-
-
 
         AlertDialog alertDialog=builder.create();
         alertDialog.setView(view1);

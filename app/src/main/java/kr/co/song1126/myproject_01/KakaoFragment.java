@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class KakaoFragment extends Fragment {
@@ -30,11 +32,23 @@ public class KakaoFragment extends Fragment {
     ArrayList<MyBookItems> items=new ArrayList<>();
     FloatingActionButton actionButton;
 
+
+
     public KakaoFragment() {
     }
 
     public KakaoFragment(Context context) {
         this.context = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
     }
 
     @Nullable
@@ -46,6 +60,7 @@ public class KakaoFragment extends Fragment {
         kakaoAdapter=new KakaoAdapter(context, items);
         recyclerView=view.findViewById(R.id.kakao_recycler);
         actionButton=view.findViewById(R.id.kakaoAdd);
+
 
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override

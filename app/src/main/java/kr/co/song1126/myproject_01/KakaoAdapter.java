@@ -1,6 +1,7 @@
 package kr.co.song1126.myproject_01;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +64,7 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         TextView bookName;
         TextView date;
         TextView views;
-        TextView line1,line2,line3;
-        TextView views01;
+
 
         public VH(@NonNull View itemView) {
             super(itemView);
@@ -75,10 +75,16 @@ public class KakaoAdapter extends RecyclerView.Adapter {
             bookName=itemView.findViewById(R.id.kakao_DB_bookName);
             date=itemView.findViewById(R.id.kakao_DB_date);
             views=itemView.findViewById(R.id.kakao_DB_views);
-            line1=itemView.findViewById(R.id.kakao_line1);
-            line2=itemView.findViewById(R.id.kakao_line2);
-            line3=itemView.findViewById(R.id.kakao_line3);
-            views01=itemView.findViewById(R.id.kakao_views);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //해당 아이템을 클릭하면 동작하는 리스너
+                    Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                    context.startActivity(intent);
+
+                }
+            });
 
         }
     }

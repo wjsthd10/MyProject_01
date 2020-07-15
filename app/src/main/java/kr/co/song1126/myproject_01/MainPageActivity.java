@@ -57,6 +57,7 @@ public class MainPageActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 FragmentTransaction transaction=fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);//프래그먼트는 스택영역에 들어가지 않지만 스택영역에 들어갈 수 있게 만들어주는 코드
 
                 switch (menuItem.getItemId()){
                     case R.id.moon:

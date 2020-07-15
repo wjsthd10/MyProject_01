@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="16dp"
+    android:layout_marginBottom="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -53,7 +54,6 @@
         android:layout_below="@id/comment_msg"
         android:layout_toRightOf="@id/comment_reportIV"
         android:clickable="true"
-        android:onClick="clickReport"
         android:textSize="18sp"
         android:text="신고"
         android:layout_width="wrap_content"

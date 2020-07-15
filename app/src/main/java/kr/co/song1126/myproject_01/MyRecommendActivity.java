@@ -24,14 +24,26 @@ public class MyRecommendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recommend);
-//        tvD=findViewById(R.id.my_delete);
-//        tvD.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                //todo 삭제 버튼 누르면 데이터 삭제
-//                return false;
-//            }
-//        });
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+
 
         recyclerView=findViewById(R.id.my_recommend_recycler);
         adapter=new MyRecommendAdapter(this, items);

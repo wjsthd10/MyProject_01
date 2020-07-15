@@ -2,6 +2,7 @@ package kr.co.song1126.myproject_01;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,31 +51,7 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
-        vh.tvD.setText(items.get(position).delete);
-        vh.line1.setText(items.get(position).line1);
-        vh.line2.setText(items.get(position).line2);
-        vh.line3.setText(items.get(position).line3);
-        vh.views01.setText(items.get(position).views01);
-        vh.tvD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //다이얼로그
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                builder.setMessage("삭제하시겠습니까?");
-
-                builder.setNegativeButton("NO",null);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // todo 다이얼로그로 확인 버튼 누르면 삭제하기
-                    }
-                });
-
-                AlertDialog dialog=builder.create();
-                dialog.show();
-            }
-        });
     }
 
     @Override
@@ -92,8 +69,7 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
         TextView date;
         TextView views;
         TextView tvD;
-        TextView line1,line2,line3;
-        TextView views01;
+
 
         public VH(@NonNull View itemView) {
             super(itemView);
@@ -105,10 +81,37 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
             date=itemView.findViewById(R.id.my_DB_date);
             views=itemView.findViewById(R.id.my_DB_views);
             tvD=itemView.findViewById(R.id.my_delete);
-            line1=itemView.findViewById(R.id.tv_line01);
-            line2=itemView.findViewById(R.id.tv_line02);
-            line3=itemView.findViewById(R.id.tv_line03);
-            views01=itemView.findViewById(R.id.my_views);
+
+
+            tvD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //다이얼로그
+
+                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                    builder.setMessage("삭제하시겠습니까?");
+
+                    builder.setNegativeButton("NO",null);
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // todo 다이얼로그로 확인 버튼 누르면 삭제하기 DB
+                        }
+                    });
+
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //나의 추천글 수정하는 화면으로 전환 새로운 액티비티 만들기
+                    Intent intent=new Intent(context, MyRecommendView_retouch_Activity.class);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

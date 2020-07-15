@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CommentActivity"></activity>
+        <activity android:name=".MyRecommendView_retouch_Activity"></activity>
+        <activity android:name=".CommentActivity" />
         <activity android:name=".ClickRecyclerItemActivity" />
         <activity android:name=".MyRecommendActivity" />
         <activity android:name=".MyPageActivity" />

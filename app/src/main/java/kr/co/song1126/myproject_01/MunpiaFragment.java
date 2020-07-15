@@ -39,6 +39,16 @@ public class MunpiaFragment extends Fragment {
     ArrayList<MyBookItems> items =new ArrayList<>();
     MunpiaAdapter munpiaAdapter;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //recycler테스트용 item시험
+        items.add(new MyBookItems("테스트화면",
+                G.loginP.getString("Img",""),
+                "text카테고리","책이름",
+                "2020.07.15","20,002"));
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
