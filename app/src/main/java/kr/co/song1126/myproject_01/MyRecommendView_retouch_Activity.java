@@ -30,7 +30,7 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
 
     ImageView bookImg;
 
-    String imgUri;
+    String imgUri;//이미지 주소
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,12 +3,14 @@ package kr.co.song1126.myproject_01;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,10 +19,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class KakaoFragment extends Fragment {
 
@@ -29,7 +41,7 @@ public class KakaoFragment extends Fragment {
 
     RecyclerView recyclerView;
     KakaoAdapter kakaoAdapter;
-    ArrayList<MyBookItems> items=new ArrayList<>();
+    ArrayList<RecyclerViewitems> items=new ArrayList<>();
     FloatingActionButton actionButton;
 
 
@@ -45,10 +57,53 @@ public class KakaoFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //recycler테스트용 item시험
-        items.add(new MyBookItems("테스트화면",
-                G.loginP.getString("Img",""),
-                "text카테고리","책이름",
-                "2020.07.15","20,002"));
+//        items.add(new RecyclerViewitems("테스트화면", "http://wjsthd10.dothome.co.kr/html/MyProject01/https://lh3.googleusercontent.com/a-/AOh14GhNtSQJmkzo2PGI21-95jPWSrWLiyCwAvmigi9O","text카테고리","책이름","2020.07.15","20,002"));
+
+        loadData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    void loadData(){
+        Retrofit retrofit=RetrofitHelper.getInstance2();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+
+        Call<ArrayList<RecyclerViewitems>> call=retrofitService.loadDataFromBoard2();
+
+        call.enqueue(new Callback<ArrayList<RecyclerViewitems>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RecyclerViewitems>> call, Response<ArrayList<RecyclerViewitems>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<RecyclerViewitems> itemDB=response.body();
+                    items.clear();
+                    kakaoAdapter.notifyDataSetChanged();
+
+                    for (int i=0;i<itemDB.size();i++){
+                        items.add(new RecyclerViewitems(
+                                itemDB.get(i).title,
+                                itemDB.get(i).imgUrl,
+                                itemDB.get(i).kategorie,
+                                itemDB.get(i).bookName,
+                                itemDB.get(i).date,
+                                itemDB.get(i).views));
+                        kakaoAdapter.notifyItemInserted(i);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RecyclerViewitems>> call, Throwable t) {
+                Log.d("SHOW",t.getMessage());
+            }
+        });
+
+
+
+
     }
 
     @Nullable

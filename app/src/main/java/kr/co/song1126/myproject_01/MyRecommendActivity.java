@@ -24,25 +24,11 @@ public class MyRecommendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recommend);
-        items.add(new MyBookItems("테스트화면",
-                G.loginP.getString("Img",""),
-                "text카테고리","책이름",
-                "2020.07.15","20,002"));
-        //recycler테스트용 item시험
-        items.add(new MyBookItems("테스트화면",
-                G.loginP.getString("Img",""),
-                "text카테고리","책이름",
-                "2020.07.15","20,002"));
-        //recycler테스트용 item시험
-        items.add(new MyBookItems("테스트화면",
-                G.loginP.getString("Img",""),
-                "text카테고리","책이름",
-                "2020.07.15","20,002"));
-        //recycler테스트용 item시험
-        items.add(new MyBookItems("테스트화면",
-                G.loginP.getString("Img",""),
-                "text카테고리","책이름",
-                "2020.07.15","20,002"));
+
+//        items.add(new MyBookItems("테스트화면",
+//                G.loginP.getString("Img",""),
+//                "text카테고리","책이름",
+//                "2020.07.15","20,002","작가명"));
 
 
         recyclerView=findViewById(R.id.my_recommend_recycler);

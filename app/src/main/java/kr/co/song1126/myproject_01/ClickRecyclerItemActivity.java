@@ -24,7 +24,13 @@ import com.bumptech.glide.Glide;
 import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ClickRecyclerItemActivity extends AppCompatActivity {
 
@@ -36,6 +42,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
     CircleImageView thumd;
 
+    //관리자 서버로 보낼 데이터
     String reportData="";
     String buttonText="";
 
@@ -52,11 +59,55 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     //확대한 사진의 이미지 주소 대입하기
     String bookImgUrl="https://byline.network/wp-content/uploads/2018/05/cat.png";
 
+    ArrayList<MyBookItems> items=new ArrayList<>();
+
+
+    void loadData(){
+        Retrofit retrofit=RetrofitHelper.getInstance2();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+
+        Call<ArrayList<MyBookItems>> call=retrofitService.loadFromclickItemView();
+        call.enqueue(new Callback<ArrayList<MyBookItems>>() {
+            @Override
+            public void onResponse(Call<ArrayList<MyBookItems>> call, Response<ArrayList<MyBookItems>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<MyBookItems> itemDB=response.body();
+                    items.clear();
+
+                    for (int i=0; i<itemDB.size();i++){
+                        items.add(new MyBookItems(
+                                itemDB.get(i).title,
+                                itemDB.get(i).imgUrl,
+                                itemDB.get(i).kategorie,
+                                itemDB.get(i).userName,
+                                itemDB.get(i).bookName,
+                                itemDB.get(i).date,
+                                itemDB.get(i).views,
+                                itemDB.get(i).favorite,
+                                itemDB.get(i).msg,
+                                itemDB.get(i).authorname
+                        ));
+                    }
+                }
+            }
+            //ArrayList에 아이템 만들었음.
+            // todo onCreate에서 뷰에 아이템 넣기
+
+            @Override
+            public void onFailure(Call<ArrayList<MyBookItems>> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //todo 이 액티비티가 시작될때 서버에서 해당하는 추천글의 데이터 받아오기.
+        loadData();
 
         setContentView(R.layout.activity_click_recycler_item);
         thumd=findViewById(R.id.thumb_view);
@@ -76,8 +127,16 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         bookImg=findViewById(R.id.bookimg_view);
 
         //=========todo 이미지를 서버에 올라간 책 이미지로 선택한다. ==> 아래코드 변경
-        bookImgUrl=G.loginP.getString("Img","");
+//        bookImgUrl=G.loginP.getString("Img","");
 
+        setView();
+
+    }
+
+    void setView(){
+//        TextView kategory, title, writerID, date, views, favorite, msg;
+//        TextView bookName, authorName;
+//        ImageView bookImg;
     }
 
     public void clickReport(View view) {
@@ -154,7 +213,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
     public void clickGoRecommend(View view) {
         //추천글의 작성자의 다른 게시글 불러오기
-        //없으면 다이얼로그로 알려주기
+        //intent로 엑티비티 열어주기
     }
 
     //이미지 크게보기

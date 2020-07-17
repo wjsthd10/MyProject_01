@@ -1,6 +1,7 @@
 package kr.co.song1126.myproject_01;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 public class MunpiaAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<MyBookItems> items;
+    ArrayList<RecyclerViewitems> items;
 
-    public MunpiaAdapter(Context context, ArrayList<MyBookItems> items) {
+    public MunpiaAdapter(Context context, ArrayList<RecyclerViewitems> items) {
         this.context = context;
         this.items = items;
     }
@@ -38,7 +39,12 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH) holder;
 
-        Glide.with(context).load(items.get(position).imgUrl).into(vh.bookImg);
+        RecyclerViewitems item=items.get(position);
+        String imgUri="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
+
+        Log.w("URLSS", imgUri);
+
+        Glide.with(context).load(imgUri).into(vh.bookImg);
         vh.title.setText(items.get(position).title);
         vh.kategorie.setText(items.get(position).kategorie);
         vh.bookName.setText(items.get(position).bookName);

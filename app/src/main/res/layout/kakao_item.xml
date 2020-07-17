@@ -18,7 +18,6 @@
         <ImageView
             android:id="@+id/kakao_item_iv"
             android:src="@drawable/kakaopage"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_width="80dp"
             android:layout_height="95dp"/>
