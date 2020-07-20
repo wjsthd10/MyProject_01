@@ -71,6 +71,7 @@ public class SeriesFragment extends Fragment {
 
                     for (int i=0; i<itemDB.size(); i++){
                         items.add(new RecyclerViewitems(
+                                itemDB.get(i).num,
                                 itemDB.get(i).title,
                                 itemDB.get(i).imgUrl,
                                 itemDB.get(i).kategorie,

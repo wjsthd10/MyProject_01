@@ -33,6 +33,8 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         this.items = items;
     }
 
+    String viewNum;
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,12 +51,12 @@ public class KakaoAdapter extends RecyclerView.Adapter {
 
         RecyclerViewitems item=items.get(position);
         String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
+        viewNum=items.get(position).num;
+
         Log.w("URLLLL",imgUrl);
         //todo 사진 안나옴 글라이드, 피카소사용 // 로그에 나온 주소로 사진 잘나옴
         vh.title.setText(items.get(position).title);
-
         Glide.with(context).load(imgUrl).into(vh.bookImg);
-
         vh.kategorie.setText(items.get(position).kategorie);
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
@@ -91,6 +93,7 @@ public class KakaoAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     //해당 아이템을 클릭하면 동작하는 리스너
                     Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                    intent.putExtra("viewNum", viewNum);
                     context.startActivity(intent);
 
                 }

@@ -2,6 +2,7 @@ package kr.co.song1126.myproject_01;
 
 public class MyBookItems {
 
+    String num;
     String title;
     String imgUrl;
     String kategorie;
@@ -13,7 +14,8 @@ public class MyBookItems {
     String msg;
     String favorite;
 
-    public MyBookItems(String title, String imgUrl, String kategorie, String userName, String bookName, String date, String views, String authorname, String msg, String favorite) {
+    public MyBookItems(String num, String title, String imgUrl, String kategorie, String userName, String bookName, String date, String views, String authorname, String msg, String favorite) {
+        this.num = num;
         this.title = title;
         this.imgUrl = imgUrl;
         this.kategorie = kategorie;

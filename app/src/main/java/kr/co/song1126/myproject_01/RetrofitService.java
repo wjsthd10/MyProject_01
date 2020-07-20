@@ -33,16 +33,8 @@ public interface RetrofitService {
     Call<ArrayList<MyBookItems>> loadFromclickItemView();
 
 
-//    @POST("/MyProject01/{filename}/")
-//    Call<RecyclerViewitems> updateData(@Path("filename") String filename,
-//                                 @Body RecyclerViewitems items);
-//    @GET("/MyProject01/kakaoLoadDB02.php/")
-//    Call<Map<String, Object>> getLoadDB();
-//    @Multipart
-//    @POST("/MyProject01/kakaoListView.php/")
-//    Call<String> postDataToBoard2(@PartMap Map<String, String> dataPart,
-//                                  @Part MultipartBody.Part filePart);
-
+    @GET("/MyProject01/loadEventImg.php/")
+    Call<ArrayList<EventViewItems>> loadEventMunpia();
 
 
 

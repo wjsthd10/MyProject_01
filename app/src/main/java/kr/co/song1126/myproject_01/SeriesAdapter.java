@@ -29,6 +29,8 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         this.items = items;
     }
 
+    String viewNum;
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +47,7 @@ public class SeriesAdapter extends RecyclerView.Adapter {
 
         RecyclerViewitems item=items.get(position);
         String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
+        viewNum=items.get(position).num;
         Log.w("URLS", imgUrl);
 
         Glide.with(context).load(imgUrl).into(vh.bookImg);
@@ -85,6 +88,7 @@ public class SeriesAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                    intent.putExtra("viewNum", viewNum);
                     context.startActivity(intent);
                 }
             });

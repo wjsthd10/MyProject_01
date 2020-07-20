@@ -1,5 +1,6 @@
 package kr.co.song1126.myproject_01;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -57,10 +59,12 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     ImageView bookImg;
 
     //확대한 사진의 이미지 주소 대입하기
-    String bookImgUrl="https://byline.network/wp-content/uploads/2018/05/cat.png";
+    String bookImgUrl="";
 
     ArrayList<MyBookItems> items=new ArrayList<>();
 
+    String viewNum;
+    int favoriteNum;
 
     void loadData(){
         Retrofit retrofit=RetrofitHelper.getInstance2();
@@ -75,27 +79,32 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
                     items.clear();
 
                     for (int i=0; i<itemDB.size();i++){
-                        items.add(new MyBookItems(
-                                itemDB.get(i).title,
-                                itemDB.get(i).imgUrl,
-                                itemDB.get(i).kategorie,
-                                itemDB.get(i).userName,
-                                itemDB.get(i).bookName,
-                                itemDB.get(i).date,
-                                itemDB.get(i).views,
-                                itemDB.get(i).favorite,
-                                itemDB.get(i).msg,
-                                itemDB.get(i).authorname
-                        ));
+                        if (itemDB.get(i).num.equals(viewNum)){
+                            items.add(new MyBookItems(
+                                    itemDB.get(i).num,
+                                    itemDB.get(i).title,
+                                    itemDB.get(i).imgUrl,
+                                    itemDB.get(i).kategorie,
+                                    itemDB.get(i).userName,
+                                    itemDB.get(i).bookName,
+                                    itemDB.get(i).date,
+                                    itemDB.get(i).views,
+                                    itemDB.get(i).authorname,
+                                    itemDB.get(i).msg,
+                                    itemDB.get(i).favorite
+                            ));
+                        }
                     }
+//                    Log.w("TAGVIE", items.size()+"");
+                    //가져온 아에팀 뷰에 넣기
+                    favoriteNum=Integer.parseInt(items.get(0).favorite);
+                    setView();
                 }
             }
-            //ArrayList에 아이템 만들었음.
-            // todo onCreate에서 뷰에 아이템 넣기
 
             @Override
             public void onFailure(Call<ArrayList<MyBookItems>> call, Throwable t) {
-
+                //실패
             }
         });
 
@@ -105,6 +114,11 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent=getIntent();
+        viewNum=intent.getStringExtra("viewNum");
+//        Toast.makeText(this, viewNum, Toast.LENGTH_SHORT).show();
+        //items의 num값과 viewNum값이 같은 items의 값을 출력....
 
         //todo 이 액티비티가 시작될때 서버에서 해당하는 추천글의 데이터 받아오기.
         loadData();
@@ -121,15 +135,12 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         favorite=findViewById(R.id.recommendFavorite);
         msg=findViewById(R.id.msg_view);
 
+
+
         //===========
         bookName=findViewById(R.id.bookName_view);
         authorName=findViewById(R.id.authorname_view);
         bookImg=findViewById(R.id.bookimg_view);
-
-        //=========todo 이미지를 서버에 올라간 책 이미지로 선택한다. ==> 아래코드 변경
-//        bookImgUrl=G.loginP.getString("Img","");
-
-        setView();
 
     }
 
@@ -137,6 +148,20 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 //        TextView kategory, title, writerID, date, views, favorite, msg;
 //        TextView bookName, authorName;
 //        ImageView bookImg;
+        kategory.setText(items.get(0).kategorie);
+        title.setText(items.get(0).title);
+        writerID.setText(items.get(0).userName);
+        date.setText(items.get(0).date);
+        views.setText(items.get(0).views);
+        authorName.setText(items.get(0).authorname);
+
+        msg.setText(items.get(0).msg);
+        bookName.setText(items.get(0).bookName);
+        favorite.setText(items.get(0).favorite);
+        Glide.with(this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(bookImg);
+        Log.w("TAGVIEW", "http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl);
+
+
     }
 
     public void clickReport(View view) {
@@ -202,12 +227,16 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         if (checkedThumd==0){
             Toast.makeText(this, "공감하셨습니다.", Toast.LENGTH_SHORT).show();
             Glide.with(this).load(R.drawable.ic_thumb_up_red_24dp).into(thumd);
+            favoriteNum++;
             checkedThumd++;
         }else if (checkedThumd==1){
             Toast.makeText(this, "공감을 취소 하셨습니다.", Toast.LENGTH_SHORT).show();
             Glide.with(this).load(R.drawable.ic_thumb_up_24dp).into(thumd);
+            favoriteNum--;
             checkedThumd--;
         }
+        //1. 서버로 보내기.(favoriteNum)==>
+        //2. 폰에 저장?
 
     }
 

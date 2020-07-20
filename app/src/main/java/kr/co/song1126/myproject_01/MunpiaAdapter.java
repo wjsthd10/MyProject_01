@@ -1,6 +1,7 @@
 package kr.co.song1126.myproject_01;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<RecyclerViewitems> items;
+
+    String viewNum;
 
     public MunpiaAdapter(Context context, ArrayList<RecyclerViewitems> items) {
         this.context = context;
@@ -41,6 +44,7 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
 
         RecyclerViewitems item=items.get(position);
         String imgUri="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
+        viewNum=items.get(position).num;
 
         Log.w("URLSS", imgUri);
 
@@ -50,6 +54,8 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
+
+
 
     }
 
@@ -83,6 +89,15 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
             line2=itemView.findViewById(R.id.munpia_line2);
             line3=itemView.findViewById(R.id.munpia_line3);
             views01=itemView.findViewById(R.id.munpia_views);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                    intent.putExtra("viewNum", viewNum);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

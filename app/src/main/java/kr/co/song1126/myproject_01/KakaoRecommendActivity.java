@@ -139,7 +139,6 @@ public class KakaoRecommendActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //todo  서버로 데이터 보내는 코드 작성
 
                 String titleDB=title.getText().toString();
                 String msgDB=msg.getText().toString();
@@ -227,13 +226,9 @@ public class KakaoRecommendActivity extends AppCompatActivity {
                     if (uri!=null)
                     bookImgUri=getRealPathFromUri(uri);
                     Glide.with(this).load(uri).into(bookImg);
-//                    imgUri=uri;
                 }
                 break;
         }
     }
-
-//    Uri imgUri;
-
 
 }
