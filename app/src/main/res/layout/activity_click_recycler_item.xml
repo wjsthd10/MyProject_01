@@ -192,7 +192,6 @@
 
                 <ImageView
                     android:clickable="true"
-                    android:onClick="bigImg"
                     android:id="@+id/bookimg_view"
                     android:src="@drawable/kakaopage"
                     android:layout_width="130dp"

@@ -32,10 +32,12 @@ public class CommentAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<CommentItems> items;
+    String viewNum;
 
-    public CommentAdapter(Context context, ArrayList<CommentItems> items) {
+    public CommentAdapter(Context context, ArrayList<CommentItems> items, String viewNum) {
         this.context = context;
         this.items = items;
+        this.viewNum = viewNum;
     }
 
     @NonNull
@@ -58,7 +60,7 @@ public class CommentAdapter extends RecyclerView.Adapter {
 //        vh.comment_notgood_tv.setText(items.get(position).comment_notgood_tv);
 //        vh.comment_good_tv.setText(items.get(position).comment_good_tv);
 
-
+        //리사이클러 뷰에 보여질 아이템 받아오기
 
 
     }
@@ -115,19 +117,7 @@ public class CommentAdapter extends RecyclerView.Adapter {
                     checkgood();
                 }
             });
-            comment_good_tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    checkgood();
-                }
-            });
             comment_notgood.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    checkNotgood();
-                }
-            });
-            comment_notgood_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     checkNotgood();

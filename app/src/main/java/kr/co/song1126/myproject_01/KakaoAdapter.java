@@ -61,6 +61,16 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                intent.putExtra("viewNum", items.get(position).num);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -88,16 +98,7 @@ public class KakaoAdapter extends RecyclerView.Adapter {
             date=itemView.findViewById(R.id.kakao_DB_date);
             views=itemView.findViewById(R.id.kakao_DB_views);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //해당 아이템을 클릭하면 동작하는 리스너
-                    Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
-                    intent.putExtra("viewNum", viewNum);
-                    context.startActivity(intent);
 
-                }
-            });
 
         }
     }

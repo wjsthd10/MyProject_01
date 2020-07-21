@@ -48,6 +48,8 @@ public class SeriesFragment extends Fragment {
         super.onCreate(savedInstanceState);
         loadData();
 
+
+
     }//onCreate
 
     @Override
@@ -115,7 +117,6 @@ public class SeriesFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.getScrollBarSize();
         spinner.setAdapter(adapter);
-
 
         recyclerView.setAdapter(seriesAdapter);
 

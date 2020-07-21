@@ -48,7 +48,7 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         RecyclerViewitems item=items.get(position);
         String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
         viewNum=items.get(position).num;
-        Log.w("URLS", imgUrl);
+        Log.w("URLS", viewNum);
 
         Glide.with(context).load(imgUrl).into(vh.bookImg);
         vh.title.setText(items.get(position).title);
@@ -56,6 +56,17 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+
+                Log.d("VIEWNUM", items.get(position).title);
+                intent.putExtra("viewNum", items.get(position).num);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -84,14 +95,6 @@ public class SeriesAdapter extends RecyclerView.Adapter {
             date=itemView.findViewById(R.id.series_DB_date);
             views=itemView.findViewById(R.id.series_DB_views);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
-                    intent.putExtra("viewNum", viewNum);
-                    context.startActivity(intent);
-                }
-            });
 
         }
     }

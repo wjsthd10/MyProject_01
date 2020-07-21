@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -57,9 +59,34 @@ public class MainPageActivity extends AppCompatActivity {
     String kakaoEventSite;
     String kakaoEventDate;
 
+    BottomNavigationView bottomNav;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        if (G.googleLoginIn) {
+//            title.setText(G.loginP.getString("Name", ""));
+//        }else if (G.kakaoLoginIn){
+//            title.setText(G.loginP.getString("Name", ""));
+//        }else title.setText("익명");
 
+        switch (bottomNav.getMenu().findItem(bottomNav.getSelectedItemId()).getItemId()){
+            case R.id.moon:
+                if (fragmentlayout.getVisibility()==View.GONE){
+                    title.setText("Main Page");
+                }else {
+                    title.setText("문 피 아");
+                }
+                break;
+            case R.id.kakao:
+                title.setText("카카오 페이지");
+                break;
+            case R.id.series:
+                title.setText("시 리 즈");
+                break;
+        }
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +101,6 @@ public class MainPageActivity extends AppCompatActivity {
         fragments[1]=new KakaoFragment(this);
         fragments[2]=new SeriesFragment(this);
 
-
         //find
         toolbar=findViewById(R.id.toolbar);
         title=findViewById(R.id.title);
@@ -86,7 +112,7 @@ public class MainPageActivity extends AppCompatActivity {
         loadData();//items에 저장됨
 
         //바텀네비게이션
-        BottomNavigationView bottomNav=findViewById(R.id.bottomNav);
+        bottomNav=findViewById(R.id.bottomNav);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -143,6 +169,7 @@ public class MainPageActivity extends AppCompatActivity {
                             }
                         });
                         transaction.replace(R.id.lay, fragments[2]);
+
                         break;
                 }
                 transaction.commit();
@@ -167,6 +194,7 @@ public class MainPageActivity extends AppCompatActivity {
         }
 
     }
+
 
     void showToast(){
         Toast.makeText(this, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
@@ -208,16 +236,6 @@ public class MainPageActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (G.googleLoginIn) {
-            title.setText(G.loginP.getString("Name", ""));
-        }else if (G.kakaoLoginIn){
-            title.setText(G.loginP.getString("Name", ""));
-        }else title.setText("익명");
-    }
 
     public void clickMyPage(View view) {
         Intent intent=new Intent(this, MyPageActivity.class);

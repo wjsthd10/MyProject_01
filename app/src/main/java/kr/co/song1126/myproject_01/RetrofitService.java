@@ -20,8 +20,17 @@ public interface RetrofitService {
     @POST("/MyProject01/MyRecommend.php/")
     Call<String> postDataToBoard(@PartMap Map<String, String> dataPart, @Part MultipartBody.Part filePart);
 
+
+    @Multipart
+    @POST("/MyProject01/comment_view.php/")
+    Call<String> postDataComment(@PartMap Map<String, String> dataPart);
+
+    @GET("/MyProject01/loadComment.php/")
+    Call<ArrayList<CommentItems>> loadDataFromComment();
+
     @GET("/MyProject01/kakaoLoadDB02.php/")
     Call<ArrayList<RecyclerViewitems>> loadDataFromBoard2();
+
 
     @GET("/MyProject01/munpiaLoadDB.php/")
     Call<ArrayList<RecyclerViewitems>> loadFromMunpia();
@@ -35,6 +44,8 @@ public interface RetrofitService {
 
     @GET("/MyProject01/loadEventImg.php/")
     Call<ArrayList<EventViewItems>> loadEventMunpia();
+
+
 
 
 

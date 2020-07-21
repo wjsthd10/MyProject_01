@@ -52,6 +52,15 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
 
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //나의 추천글 수정하는 화면으로 전환 새로운 액티비티 만들기
+                Intent intent=new Intent(context, MyRecommendView_retouch_Activity.class);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -103,16 +112,6 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
                     dialog.show();
                 }
             });
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //나의 추천글 수정하는 화면으로 전환 새로운 액티비티 만들기
-                    Intent intent=new Intent(context, MyRecommendView_retouch_Activity.class);
-                    context.startActivity(intent);
-                }
-            });
-
         }
     }
 

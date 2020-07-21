@@ -55,8 +55,15 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
         vh.date.setText(items.get(position).date);
         vh.views.setText(items.get(position).views);
 
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
+                Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
+                intent.putExtra("viewNum", items.get(position).num);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -89,15 +96,6 @@ public class MunpiaAdapter extends RecyclerView.Adapter {
             line2=itemView.findViewById(R.id.munpia_line2);
             line3=itemView.findViewById(R.id.munpia_line3);
             views01=itemView.findViewById(R.id.munpia_views);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
-                    intent.putExtra("viewNum", viewNum);
-                    context.startActivity(intent);
-                }
-            });
 
         }
     }

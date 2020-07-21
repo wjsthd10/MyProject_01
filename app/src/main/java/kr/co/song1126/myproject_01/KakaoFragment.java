@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,13 +60,13 @@ public class KakaoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         //recycler테스트용 item시험
 //        items.add(new RecyclerViewitems("테스트화면", "http://wjsthd10.dothome.co.kr/html/MyProject01/https://lh3.googleusercontent.com/a-/AOh14GhNtSQJmkzo2PGI21-95jPWSrWLiyCwAvmigi9O","text카테고리","책이름","2020.07.15","20,002"));
-
         loadData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         loadData();
     }
 

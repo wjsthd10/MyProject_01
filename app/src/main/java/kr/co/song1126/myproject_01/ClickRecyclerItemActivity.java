@@ -58,11 +58,10 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     TextView bookName, authorName;
     ImageView bookImg;
 
-    //확대한 사진의 이미지 주소 대입하기
-    String bookImgUrl="";
-
     ArrayList<MyBookItems> items=new ArrayList<>();
 
+
+    //아이템 클릭시 받아온 넘버값
     String viewNum;
     int favoriteNum;
 
@@ -95,10 +94,32 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
                             ));
                         }
                     }
-//                    Log.w("TAGVIE", items.size()+"");
+//
+
+
                     //가져온 아에팀 뷰에 넣기
                     favoriteNum=Integer.parseInt(items.get(0).favorite);
                     setView();
+
+                    Log.w("TAGVIE", items.size()+"");
+                    bookImg.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertDialog.Builder builder=new AlertDialog.Builder(ClickRecyclerItemActivity.this);
+                            LayoutInflater inflater=LayoutInflater.from(ClickRecyclerItemActivity.this);
+
+                            View view1=inflater.inflate(R.layout.dialog_imageview, null);
+                            AlertDialog alertDialog=builder.create();
+                            alertDialog.setView(view1);
+
+                            ImageView imageView=view1.findViewById(R.id.dialogImg);
+                            Glide.with(ClickRecyclerItemActivity.this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(imageView);
+//                            Glide.with(ClickRecyclerItemActivity.this).load(R.drawable.series).into(imageView);
+
+                            alertDialog.show();
+                        }
+                    });
+
                 }
             }
 
@@ -218,6 +239,8 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
     public void clickDet(View view) {
         //댓글창 엑티비티 열기  ==> finish()하지 않기 댓글을 보고 돌아올 수 있음
         Intent intent=new Intent(this, CommentActivity.class);
+        //데이터 추가로 보내야함
+        intent.putExtra("viewNum", viewNum);
         startActivity(intent);
     }
 
@@ -245,23 +268,5 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         //intent로 엑티비티 열어주기
     }
 
-    //이미지 크게보기
-    public void bigImg(View view) {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        LayoutInflater inflater=LayoutInflater.from(this);
-
-        View view1=inflater.inflate(R.layout.dialog_imageview, null);
-
-
-        ImageView imageView=view1.findViewById(R.id.dialogImg);
-        Picasso.get().load(bookImgUrl).into(imageView);
-//        Glide.with(this).load(R.drawable.series).into(imageView);
-
-        AlertDialog alertDialog=builder.create();
-        alertDialog.setView(view1);
-        alertDialog.show();
-
-
-    }
 }
