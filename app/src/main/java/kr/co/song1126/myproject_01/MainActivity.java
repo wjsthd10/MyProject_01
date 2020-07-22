@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -255,5 +256,11 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void clickHtml(View view) {
+        //http://wjsthd10.dothome.co.kr/MyProject01/MyProject01.html
+        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("http://wjsthd10.dothome.co.kr/MyProject01/MyProject01.html"));
+        startActivity(intent);
     }
 }

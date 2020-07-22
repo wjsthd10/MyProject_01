@@ -21,12 +21,12 @@ import java.util.ArrayList;
 public class MyRecommendAdapter extends RecyclerView.Adapter {
 
     Context context;
-    ArrayList<MyBookItems> items;
+    ArrayList<MyRecommendItem> items;
 
     public MyRecommendAdapter() {
     }
 
-    public MyRecommendAdapter(Context context, ArrayList<MyBookItems> items) {
+    public MyRecommendAdapter(Context context, ArrayList<MyRecommendItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -45,8 +45,10 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         VH vh=(VH) holder;
 
-        Glide.with(context).load(items.get(position).imgUrl).into(vh.bookImg);
+        String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(position).imgUrl;
+
         vh.title.setText(items.get(position).title);
+        Glide.with(context).load(imgUrl).into(vh.bookImg);
         vh.kategorie.setText(items.get(position).kategorie);
         vh.bookName.setText(items.get(position).bookName);
         vh.date.setText(items.get(position).date);
@@ -57,9 +59,32 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 //나의 추천글 수정하는 화면으로 전환 새로운 액티비티 만들기
                 Intent intent=new Intent(context, MyRecommendView_retouch_Activity.class);
+                intent.putExtra("viewNum", items.get(position).num);
                 context.startActivity(intent);
             }
         });
+
+         vh.tvD.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 //다이얼로그
+
+                 AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                 builder.setMessage("삭제하시겠습니까?");
+
+                 builder.setNegativeButton("NO",null);
+                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialog, int which) {
+                         // todo 다이얼로그로 확인 버튼 누르면 삭제하기 DB
+                         //쿼리문에서 삭제하는 거 사용하기
+                     }
+                 });
+
+                 AlertDialog dialog=builder.create();
+                 dialog.show();
+             }
+         });
 
     }
 
@@ -92,26 +117,7 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
             tvD=itemView.findViewById(R.id.my_delete);
 
 
-            tvD.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //다이얼로그
 
-                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                    builder.setMessage("삭제하시겠습니까?");
-
-                    builder.setNegativeButton("NO",null);
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // todo 다이얼로그로 확인 버튼 누르면 삭제하기 DB
-                        }
-                    });
-
-                    AlertDialog dialog=builder.create();
-                    dialog.show();
-                }
-            });
         }
     }
 

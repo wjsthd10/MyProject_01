@@ -236,18 +236,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+
             <LinearLayout
-                android:gravity="center"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_weight="1"
                     android:padding="8dp"
                     android:id="@+id/det_view"
                     android:clickable="true"
                     android:onClick="clickDet"
-                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/thumb_view"
                     android:src="@drawable/ic_chat_02"
                     app:civ_border_width="16dp"
                     app:civ_border_color="#53CF5A"
@@ -255,12 +257,14 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
+
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_weight="1"
                     android:clickable="true"
                     android:padding="8dp"
                     android:onClick="clickThumb"
                     android:id="@+id/thumb_view"
-                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
                     app:civ_border_width="16dp"
                     app:civ_border_color="#4496D5"
                     app:civ_circle_background_color="#4496D5"
@@ -269,16 +273,42 @@
                     android:layout_height="100dp"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_weight="1"
                     android:id="@+id/go_recommend_view"
+                    android:layout_toRightOf="@id/thumb_view"
                     android:padding="8dp"
                     android:clickable="true"
-                    android:onClick="clickGoRecommend"
                     android:src="@drawable/ic_library_24dp"
                     app:civ_border_color="#B478D5"
                     app:civ_circle_background_color="#B478D5"
                     app:civ_border_width="16dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="댓 글"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="공 감"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="같은 도서의 추천글"
+                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 

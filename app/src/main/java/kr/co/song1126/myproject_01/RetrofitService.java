@@ -25,6 +25,14 @@ public interface RetrofitService {
     @POST("/MyProject01/comment_view.php/")
     Call<String> postDataComment(@PartMap Map<String, String> dataPart);
 
+
+    @GET("/MyProject01/searchLoad.php/")
+    Call<ArrayList<MyRecommendItem>> loadDataMyRecommend();
+
+
+    @GET("/MyProject01/searchLoad.php/")
+    Call<ArrayList<RecyclerViewitems>> loadDataSearch();
+
     @GET("/MyProject01/loadComment.php/")
     Call<ArrayList<CommentItems>> loadDataFromComment();
 

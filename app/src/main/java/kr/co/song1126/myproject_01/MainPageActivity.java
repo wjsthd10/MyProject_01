@@ -238,15 +238,16 @@ public class MainPageActivity extends AppCompatActivity {
 
 
     public void clickMyPage(View view) {
+        //마이페이지 실행버튼
         Intent intent=new Intent(this, MyPageActivity.class);
         startActivity(intent);
 
     }
 
     public void clickSearch(View view) {
-        //todo 검색창 엑티비티 만들기
-        //아래는 다른 액티비티 열어놨음
-
+        //검색창 액티비티실행
+        Intent intent=new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
 

@@ -35,6 +35,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class ClickRecyclerItemActivity extends AppCompatActivity {
+    CircleImageView otherRecommend;
 
     RadioButton rb;
 
@@ -119,6 +120,15 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
                             alertDialog.show();
                         }
                     });
+                    otherRecommend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d("OTHERRECOMMEND", items.get(0).bookName);
+                            Intent intent=new Intent(ClickRecyclerItemActivity.this, OtherRecommendActivity.class);
+                            intent.putExtra("bookName",items.get(0).bookName);
+                            startActivity(intent);
+                        }
+                    });
 
                 }
             }
@@ -146,7 +156,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_click_recycler_item);
         thumd=findViewById(R.id.thumb_view);
-
+        otherRecommend=findViewById(R.id.go_recommend_view);
         //==========
         kategory=findViewById(R.id.tv_recyclerItem_kategorie);
         title=findViewById(R.id.tv_recyclerItem_title);
@@ -263,10 +273,6 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
     }
 
-    public void clickGoRecommend(View view) {
-        //추천글의 작성자의 다른 게시글 불러오기
-        //intent로 엑티비티 열어주기
-    }
 
 
 }

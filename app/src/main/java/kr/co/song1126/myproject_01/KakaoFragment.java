@@ -1,6 +1,7 @@
 package kr.co.song1126.myproject_01;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -123,8 +125,26 @@ public class KakaoFragment extends Fragment {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, KakaoRecommendActivity.class);
-                startActivity(intent);
+                if (G.googleLoginIn){
+                    Intent intent=new Intent(context, KakaoRecommendActivity.class);
+                    startActivity(intent);
+                }else if (G.kakaoLoginIn){
+                    Intent intent=new Intent(context, KakaoRecommendActivity.class);
+                    startActivity(intent);
+                }else {
+                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                    builder.setMessage("로그인 후 사용할 수 있는 기능입니다.");
+                    builder.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent=new Intent(context, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
+                    AlertDialog alertDialog=builder.create();
+                    alertDialog.show();
+                }
             }
         });
 
