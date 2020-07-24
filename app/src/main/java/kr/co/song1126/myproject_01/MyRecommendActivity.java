@@ -63,7 +63,6 @@ public class MyRecommendActivity extends AppCompatActivity {
                                     itemDB.get(i).views,
                                     itemDB.get(i).userName
                             ));
-                            Log.d("RESPONSETEST01",items.get(i).bookName);
                             adapter.notifyItemInserted(i);
                         }
                     }

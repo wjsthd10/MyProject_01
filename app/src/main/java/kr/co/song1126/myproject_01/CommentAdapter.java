@@ -168,6 +168,9 @@ public class CommentAdapter extends RecyclerView.Adapter {
                 rb=rg.findViewById(reportBtn);
                 String btnText=rb.getText().toString();
                 //todo btnText, reportData, 신고자 아이디, 댓글작성자 아이디를 관리자 DB에 전송
+
+
+
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {

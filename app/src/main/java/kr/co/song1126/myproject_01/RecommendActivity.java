@@ -176,7 +176,6 @@ public class RecommendActivity extends AppCompatActivity {
     }
 
     public void setBookImg(View view) {
-        //todo 0709 : 갤러리랑 연결시키기
         Intent intent=new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, GALLERY);

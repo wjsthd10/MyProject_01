@@ -25,6 +25,15 @@ public interface RetrofitService {
     @POST("/MyProject01/comment_view.php/")
     Call<String> postDataComment(@PartMap Map<String, String> dataPart);
 
+    @Multipart
+    @POST("/MyProject01/DeleteData.php/")
+    Call<String> deleteData(@PartMap Map<String, String> dataPart);
+
+    @Multipart
+    @POST("/MyProject01/retouchDataUpload.php/")
+    Call<String> retouchUpload(@PartMap Map<String ,String> dataPart, @Part MultipartBody.Part filePart);
+
+
 
     @GET("/MyProject01/searchLoad.php/")
     Call<ArrayList<MyRecommendItem>> loadDataMyRecommend();
@@ -45,6 +54,7 @@ public interface RetrofitService {
 
     @GET("/MyProject01/seriesLoadDB.php/")
     Call<ArrayList<RecyclerViewitems>> loadFromSeries();
+
 
     @GET("/MyProject01/clickItemView.php/")
     Call<ArrayList<MyBookItems>> loadFromclickItemView();

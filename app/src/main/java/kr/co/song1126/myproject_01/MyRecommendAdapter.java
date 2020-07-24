@@ -3,6 +3,7 @@ package kr.co.song1126.myproject_01;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MyRecommendAdapter extends RecyclerView.Adapter {
 
@@ -70,14 +78,37 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
                  //다이얼로그
 
                  AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                 builder.setMessage("삭제하시겠습니까?");
+                 builder.setTitle("게시글을 삭제하시겠습니까?");
+                 builder.setMessage("서버의 데이터를 지우시면 다시 복구할 수 없습니다.");
+
 
                  builder.setNegativeButton("NO",null);
                  builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialog, int which) {
-                         // todo 다이얼로그로 확인 버튼 누르면 삭제하기 DB
                          //쿼리문에서 삭제하는 거 사용하기
+
+                         Map<String, String> dataPart=new HashMap<>();
+                         dataPart.put("num", items.get(position).num);
+
+                         Retrofit retrofit=RetrofitHelper.getInstance();
+                         RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+                         Call<String> call=retrofitService.deleteData(dataPart);
+                         call.enqueue(new Callback<String>() {
+                             @Override
+                             public void onResponse(Call<String> call, Response<String> response) {
+                                 if (response.isSuccessful()) {
+                                     String s=response.body();
+                                     Log.e("DELETEONCLICK", s);
+                                 }
+                             }
+
+                             @Override
+                             public void onFailure(Call<String> call, Throwable t) {
+                                 Log.e("DELETEONCLICK", t.getMessage());
+                             }
+                         });
+                         Toast.makeText(context, "게시글이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                      }
                  });
 

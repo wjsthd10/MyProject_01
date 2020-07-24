@@ -95,31 +95,12 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
                             ));
                         }
                     }
-//
-
-
                     //가져온 아에팀 뷰에 넣기
                     favoriteNum=Integer.parseInt(items.get(0).favorite);
                     setView();
 
                     Log.w("TAGVIE", items.size()+"");
-                    bookImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            AlertDialog.Builder builder=new AlertDialog.Builder(ClickRecyclerItemActivity.this);
-                            LayoutInflater inflater=LayoutInflater.from(ClickRecyclerItemActivity.this);
 
-                            View view1=inflater.inflate(R.layout.dialog_imageview, null);
-                            AlertDialog alertDialog=builder.create();
-                            alertDialog.setView(view1);
-
-                            ImageView imageView=view1.findViewById(R.id.dialogImg);
-                            Glide.with(ClickRecyclerItemActivity.this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(imageView);
-//                            Glide.with(ClickRecyclerItemActivity.this).load(R.drawable.series).into(imageView);
-
-                            alertDialog.show();
-                        }
-                    });
                     otherRecommend.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -136,6 +117,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<MyBookItems>> call, Throwable t) {
                 //실패
+                Log.e("ClickItem MyBookItems", t.getMessage());
             }
         });
 
@@ -191,6 +173,28 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         favorite.setText(items.get(0).favorite);
         Glide.with(this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(bookImg);
         Log.w("TAGVIEW", "http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl);
+
+        bookImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo 이미지 확대 됌.  ===> Glide 안됌.....로딩에 시간이좀 걸림...로딩표시해야함
+                Log.e("DDDD", "DDDDD");
+                AlertDialog.Builder builder=new AlertDialog.Builder(ClickRecyclerItemActivity.this);
+                LayoutInflater inflater=LayoutInflater.from(ClickRecyclerItemActivity.this);
+
+                View view1=inflater.inflate(R.layout.dialog_imageview, null);
+                ImageView imageView=view1.findViewById(R.id.dialogImg);
+
+                Log.e("IMGSET", "http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl);
+//                Glide.with(ClickRecyclerItemActivity.this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(imageView);
+                Picasso.get().load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(imageView);
+                //setView는 builder에게... Dialog가 만들어지기 전에
+                builder.setView(view1);
+                AlertDialog alertDialog=builder.create();
+
+                alertDialog.show();
+            }
+        });
 
 
     }

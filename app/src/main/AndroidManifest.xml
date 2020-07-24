@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OtherRecommendActivity"></activity>
+        <activity android:name=".MyFavoriteRecommendActivity"></activity>
+        <activity android:name=".OtherRecommendActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".MyRecommendView_retouch_Activity" />
         <activity android:name=".CommentActivity" />

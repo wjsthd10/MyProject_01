@@ -122,6 +122,7 @@
         android:layout_margin="16dp"
         android:textSize="20sp"
         android:hint="제목을 입력하세요."
+        android:text=""
         android:inputType="text"
         android:maxLines="1"
         android:padding="5dp"

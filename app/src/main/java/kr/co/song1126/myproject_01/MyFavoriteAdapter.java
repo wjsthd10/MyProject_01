@@ -2,8 +2,6 @@ package kr.co.song1126.myproject_01;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,46 +12,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class KakaoAdapter extends RecyclerView.Adapter {
+public class MyFavoriteAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<RecyclerViewitems> items;
 
-    public KakaoAdapter() {
-    }
-
-    public KakaoAdapter(Context context, ArrayList<RecyclerViewitems> items) {
+    public MyFavoriteAdapter(Context context, ArrayList<RecyclerViewitems> items) {
         this.context = context;
         this.items = items;
     }
 
-    String viewNum;
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View itemView= LayoutInflater.from(context).inflate(R.layout.kakao_item, parent, false);
+        View itemView=LayoutInflater.from(context).inflate(R.layout.my_favorite_item, parent, false);
         VH holder=new VH(itemView);
-
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        VH vh=(VH) holder;
+        VH vh=(VH)holder;
+        String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(position).imgUrl;
 
-        RecyclerViewitems item=items.get(position);
-        String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
-        viewNum=items.get(position).num;
-
-        Log.w("URLLLL",imgUrl);
         vh.title.setText(items.get(position).title);
         Glide.with(context).load(imgUrl).into(vh.bookImg);
         vh.kategorie.setText(items.get(position).kategorie);
@@ -64,12 +48,12 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
                 intent.putExtra("viewNum", items.get(position).num);
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -86,20 +70,17 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         TextView date;
         TextView views;
 
-
         public VH(@NonNull View itemView) {
             super(itemView);
-
-            bookImg=itemView.findViewById(R.id.kakao_item_iv);
-            title=itemView.findViewById(R.id.kakao_item_title);
-            kategorie=itemView.findViewById(R.id.kakao_DB_Kategorie);
-            bookName=itemView.findViewById(R.id.kakao_DB_bookName);
-            date=itemView.findViewById(R.id.kakao_DB_date);
-            views=itemView.findViewById(R.id.kakao_DB_views);
-
-
+            title=itemView.findViewById(R.id.favorite_item_title);
+            bookImg=itemView.findViewById(R.id.favorite_item_iv);
+            kategorie=itemView.findViewById(R.id.favorite_DB_Kategorie);
+            bookName=itemView.findViewById(R.id.favorite_DB_bookName);
+            date=itemView.findViewById(R.id.favorite_DB_date);
+            views=itemView.findViewById(R.id.favorite_DB_views);
 
         }
     }
-}
 
+
+}

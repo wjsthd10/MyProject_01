@@ -183,7 +183,8 @@ public class MyPageActivity extends AppCompatActivity {
     }//사용자가 작성한 추천글 리스트
 
     public void clickMyfavorite(View view) {
-
+        Intent intent=new Intent(this, MyFavoriteRecommendActivity.class);
+        startActivity(intent);
     }//사용자가 공감한 추천글 리스트
 
 
