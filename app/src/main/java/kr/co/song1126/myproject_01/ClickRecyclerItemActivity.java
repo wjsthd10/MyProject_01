@@ -27,6 +27,8 @@ import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -133,7 +135,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 //        Toast.makeText(this, viewNum, Toast.LENGTH_SHORT).show();
         //items의 num값과 viewNum값이 같은 items의 값을 출력....
 
-        //todo 이 액티비티가 시작될때 서버에서 해당하는 추천글의 데이터 받아오기.
+        //이 액티비티가 시작될때 서버에서 해당하는 추천글의 데이터 받아오기.
         loadData();
 
         setContentView(R.layout.activity_click_recycler_item);
@@ -177,7 +179,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         bookImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo 이미지 확대 됌.  ===> Glide 안됌.....로딩에 시간이좀 걸림...로딩표시해야함
+                //이미지 확대 됌.  ===> Glide 안됌.....로딩에 시간이좀 걸림...로딩표시해야함
                 Log.e("DDDD", "DDDDD");
                 AlertDialog.Builder builder=new AlertDialog.Builder(ClickRecyclerItemActivity.this);
                 LayoutInflater inflater=LayoutInflater.from(ClickRecyclerItemActivity.this);
@@ -229,13 +231,49 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
                 //  Toast.makeText(ClickRecyclerItemActivity.this, buttonText+" : "+reportData, Toast.LENGTH_SHORT).show();
                 //  buttonText : 라디오 버튼택스트, reportData : 직접작성한 신고내용
-                //  todo  관리자 서버로 보내기
+                //  관리자 서버로 보내기 //끝
+                reportDataUpload();
+                Toast.makeText(ClickRecyclerItemActivity.this, "신고내용이 접수되었습니다.", Toast.LENGTH_SHORT).show();
 
-                dialog.cancel();
             }
         });
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
+    }
+
+    void reportDataUpload(){
+        //서버작업
+        Retrofit retrofit=RetrofitHelper.getInstance();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+
+        // reportType	reportMsg	userName	reportNum   buttonText
+
+        Map<String, String> dataPart=new HashMap<>();
+        dataPart.put("reportType", "Recommend");
+        dataPart.put("reportMsg", reportData);
+        dataPart.put("userName", G.loginP.getString("Name", ""));
+        dataPart.put("reportNum", viewNum);
+        dataPart.put("buttonText", buttonText);
+
+        Log.e("DATAPARTLOG", dataPart.toString());
+
+        Call<String> call=retrofitService.reportDataUpload(dataPart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String s=response.body();
+                    Log.e("MAPDATAPART", s);
+                    Log.e("MAPDATAPART", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("MAPDATAPART", t.getMessage());
+            }
+        });
+
     }
 
     public void clickUpButton(View view) {

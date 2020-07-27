@@ -19,6 +19,13 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class KakaoAdapter extends RecyclerView.Adapter {
 
@@ -33,7 +40,7 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         this.items = items;
     }
 
-    String viewNum;
+
 
     @NonNull
     @Override
@@ -51,9 +58,9 @@ public class KakaoAdapter extends RecyclerView.Adapter {
 
         RecyclerViewitems item=items.get(position);
         String imgUrl="http://wjsthd10.dothome.co.kr/MyProject01/"+item.imgUrl;
-        viewNum=items.get(position).num;
 
-        Log.w("URLLLL",imgUrl);
+
+        Log.w("URLLLL",items.get(position).num);
         vh.title.setText(items.get(position).title);
         Glide.with(context).load(imgUrl).into(vh.bookImg);
         vh.kategorie.setText(items.get(position).kategorie);
@@ -64,6 +71,11 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //서버의 views ++하기
+                int bookViewInt=Integer.parseInt(items.get(position).views);
+                bookViewInt++;
+                String bookViewStr=Integer.toString(bookViewInt);
+                G.bookViewsUpdate(bookViewStr, items.get(position).num);
 
                 Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
                 intent.putExtra("viewNum", items.get(position).num);

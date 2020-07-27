@@ -35,6 +35,7 @@ import com.kakao.usermgmt.response.model.Profile;
 import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.exception.KakaoException;
 import com.pkmmte.view.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         iv=findViewById(R.id.iv_company);
+        iv.setImageResource(R.mipmap.book_ic_asset);
+//        Glide.with(this).load(R.drawable.series).into(iv);
+//        Picasso.get().load(R.drawable.series).into(iv);
         String keyHash=getKeyHash(this);
         Log.d("TAG", keyHash);
 
@@ -74,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 singIn();
             }
         });
-
-
-
 
     }
 
@@ -167,7 +168,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+//        Log.e("SDDSGSDGGDS", "에러확인01");
         super.onDestroy();
+//        Log.e("SDDSGSDGGDS", "에러확인");
         Session.getCurrentSession().removeCallback(sessionCallback);
         mGoogleSignInClient=null;
     }

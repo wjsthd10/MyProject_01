@@ -2,6 +2,7 @@ package kr.co.song1126.myproject_01;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,13 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CommentAdapter extends RecyclerView.Adapter {
 
@@ -33,6 +41,11 @@ public class CommentAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<CommentItems> items;
     String viewNum;
+
+
+    //보낼 데이터
+    String btnText;
+    String reportData;
 
     public CommentAdapter(Context context, ArrayList<CommentItems> items, String viewNum) {
         this.context = context;
@@ -163,14 +176,14 @@ public class CommentAdapter extends RecyclerView.Adapter {
                 et=view.findViewById(R.id.report_edit);
                 rg=view.findViewById(R.id.group_btn);
 
-                String reportData=et.getText().toString();
+                reportData=et.getText().toString();
                 int reportBtn=rg.getCheckedRadioButtonId();
                 rb=rg.findViewById(reportBtn);
-                String btnText=rb.getText().toString();
-                //todo btnText, reportData, 신고자 아이디, 댓글작성자 아이디를 관리자 DB에 전송
+                btnText=rb.getText().toString();
+                //btnText, reportData, 신고자 아이디, 댓글작성자 아이디를 관리자 DB에 전송
 
-
-
+                reportDataUpload();
+                Toast.makeText(context, "신고내용이 접수되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -183,6 +196,40 @@ public class CommentAdapter extends RecyclerView.Adapter {
 
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
+    }
+
+    void reportDataUpload(){
+        //서버작업
+        Retrofit retrofit=RetrofitHelper.getInstance();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+
+        // reportType	reportMsg	userName	reportNum   buttonText
+
+        Map<String, String> dataPart=new HashMap<>();
+        dataPart.put("reportType", "comment");
+        dataPart.put("reportMsg", reportData);
+        dataPart.put("userName", G.loginP.getString("Name", ""));
+        dataPart.put("reportNum", viewNum);
+        dataPart.put("buttonText", btnText);
+
+        Log.e("DATAPARTLOG", dataPart.toString());
+
+        Call<String> call=retrofitService.reportDataUpload(dataPart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    String s=response.body();
+                    Log.e("MAPDATAPART", s);
+                    Log.e("MAPDATAPART", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("MAPDATAPART", t.getMessage());
+            }
+        });
     }
 
 }

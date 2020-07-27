@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="작성자의 다른 추천글"
+                android:text="같은 도서의 다른 추천글"
                 android:textSize="30sp" />
 
             <ImageView

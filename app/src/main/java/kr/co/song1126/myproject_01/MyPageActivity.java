@@ -183,8 +183,15 @@ public class MyPageActivity extends AppCompatActivity {
     }//사용자가 작성한 추천글 리스트
 
     public void clickMyfavorite(View view) {
-        Intent intent=new Intent(this, MyFavoriteRecommendActivity.class);
-        startActivity(intent);
+
+        if (G.googleLoginIn){
+            Intent intent=new Intent(this, MyFavoriteRecommendActivity.class);
+            startActivity(intent);
+        }else if (G.kakaoLoginIn){
+            Intent intent=new Intent(this, MyFavoriteRecommendActivity.class);
+            startActivity(intent);
+        }else Toast.makeText(this, "로그인 후 사용할 수 있습니다.", Toast.LENGTH_LONG).show();
+
     }//사용자가 공감한 추천글 리스트
 
 

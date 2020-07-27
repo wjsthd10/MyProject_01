@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Path;
@@ -33,6 +34,13 @@ public interface RetrofitService {
     @POST("/MyProject01/retouchDataUpload.php/")
     Call<String> retouchUpload(@PartMap Map<String ,String> dataPart, @Part MultipartBody.Part filePart);
 
+    @Multipart
+    @POST("/MyProject01/reportDataUpload.php/")
+    Call<String> reportDataUpload(@PartMap Map<String, String> dataPart);
+
+    @Multipart
+    @POST("/MyProject01/updateViews.php/")
+    Call<String> updateViews(@PartMap Map<String, String> dataPart);
 
 
     @GET("/MyProject01/searchLoad.php/")
@@ -62,6 +70,8 @@ public interface RetrofitService {
 
     @GET("/MyProject01/loadEventImg.php/")
     Call<ArrayList<EventViewItems>> loadEventMunpia();
+
+
 
 
 

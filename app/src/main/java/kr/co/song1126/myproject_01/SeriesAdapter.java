@@ -60,6 +60,12 @@ public class SeriesAdapter extends RecyclerView.Adapter {
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //서버의 views ++하기
+                int bookViewInt=Integer.parseInt(items.get(position).views);
+                bookViewInt++;
+                String bookViewStr=Integer.toString(bookViewInt);
+                G.bookViewsUpdate(bookViewStr, items.get(position).num);
+
                 Intent intent=new Intent(context, ClickRecyclerItemActivity.class);
 
                 Log.d("VIEWNUM", items.get(position).title);
