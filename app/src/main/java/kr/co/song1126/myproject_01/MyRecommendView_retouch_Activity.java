@@ -123,6 +123,7 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
                         }
 //                        Log.e("TAG0102", itemDB.get(i).imgUrl);
                     }
+                    bookImgUri=items.get(0).imgUrl;
                     insertView();
                 }
             }
@@ -147,6 +148,7 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
         }
         Glide.with(this).load("http://wjsthd10.dothome.co.kr/MyProject01/"+items.get(0).imgUrl).into(bookImg);
         tvNum.setText(items.get(0).msg.length()+"");
+        Log.e("Bookimguri", bookImgUri);
     }
 
     public void clickUpButton(View view) {
@@ -160,21 +162,16 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //서버로 데이터들 보내기
                 dialog.cancel();
                 finish();
             }
         });
-
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
-
     }
-
     public void clickAdd(View view) {
         //수정한 데이터 서버로 보내기
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -196,11 +193,9 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
                 finish();
             }
         });
-
         AlertDialog alertDialog=builder.create();
         alertDialog.show();
     }
-
     void pushDB(){
         Log.e("VIEWNUM", viewNum);
         Map<String, String> dataPart=new HashMap<>();
@@ -215,12 +210,14 @@ public class MyRecommendView_retouch_Activity extends AppCompatActivity {
         dataPart.put("userEmail",G.loginP.getString("Email",""));
         dataPart.put("authorname", authorname.getText().toString());
         dataPart.put("fragmentName","series");
-
         MultipartBody.Part filePart=null;
+        Log.e("BookimguriPush", bookImgUri);
         if (bookImgUri !=null){
             File file=new File(bookImgUri);
             RequestBody requestBody=RequestBody.create(MediaType.parse("image/*"),file);
             filePart=MultipartBody.Part.createFormData("img", file.getName(),requestBody);
+        }else {
+            filePart=MultipartBody.Part.createFormData("img", items.get(0).imgUrl);
         }
 
         Retrofit retrofit=RetrofitHelper.getInstance();

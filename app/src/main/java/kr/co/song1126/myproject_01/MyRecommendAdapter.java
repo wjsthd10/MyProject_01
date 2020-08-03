@@ -76,18 +76,14 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
              @Override
              public void onClick(View v) {
                  //다이얼로그
-
                  AlertDialog.Builder builder=new AlertDialog.Builder(context);
                  builder.setTitle("게시글을 삭제하시겠습니까?");
                  builder.setMessage("서버의 데이터를 지우시면 다시 복구할 수 없습니다.");
-
 
                  builder.setNegativeButton("NO",null);
                  builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialog, int which) {
-                         //쿼리문에서 삭제하는 거 사용하기
-
                          Map<String, String> dataPart=new HashMap<>();
                          dataPart.put("num", items.get(position).num);
 
@@ -102,7 +98,6 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
                                      Log.e("DELETEONCLICK", s);
                                  }
                              }
-
                              @Override
                              public void onFailure(Call<String> call, Throwable t) {
                                  Log.e("DELETEONCLICK", t.getMessage());
@@ -111,7 +106,6 @@ public class MyRecommendAdapter extends RecyclerView.Adapter {
                          Toast.makeText(context, "게시글이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                      }
                  });
-
                  AlertDialog dialog=builder.create();
                  dialog.show();
              }

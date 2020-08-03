@@ -98,47 +98,10 @@ public class CommentActivity extends AppCompatActivity {
             Toast.makeText(this, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        if (G.googleLoginIn || G.kakaoLoginIn){
-
-            //댓글내용전송
-            //comment_num	comment_id	comment_date	comment_msg	favor
-            commentDB=addComment.getText().toString();//사용자가 작성한 댓글
-            String userName=G.loginP.getString("Name","");//사용자 아이디
-
-            Map<String, String> dataPart=new HashMap<>();
-            dataPart.put("recommend_num",viewNum);
-            dataPart.put("comment_id", userName);
-            dataPart.put("comment_date","");
-            dataPart.put("comment_msg", commentDB);
-            dataPart.put("favor","0");
-
-            Retrofit retrofit=RetrofitHelper.getInstance();
-            RetrofitService retrofitService=retrofit.create(RetrofitService.class);
-
-            Call<String> call=retrofitService.postDataComment(dataPart);
-            call.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful()) {
-                        Log.w("COMMENTITEM", dataPart.toString());
-                        Log.w("COMMENTITEM", response.body());
-                        AlertDialog.Builder builder=new AlertDialog.Builder(CommentActivity.this);
-                        builder.setMessage("댓글 업로드 성공");
-                        AlertDialog dialog=builder.create();
-                        dialog.show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<String> call, Throwable t) {
-                    Log.w("call",t.getMessage());
-                }
-            });
-
-
+        if (G.googleLoginIn){
+            commentDialog();
         }else if (G.kakaoLoginIn){
-
+            commentDialog();
         }else {
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setMessage("로그인 후 사용할 수 있는 기능입니다.");
@@ -149,14 +112,40 @@ public class CommentActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
             AlertDialog alertDialog=builder.create();
             alertDialog.show();
         }
-
-
-
         addComment.setText("");//글자 지우기
-
     }
+    void commentDialog(){
+        commentDB=addComment.getText().toString();//사용자가 작성한 댓글
+        String userName=G.loginP.getString("Name","");//사용자 아이디
+        Map<String, String> dataPart=new HashMap<>();
+        dataPart.put("recommend_num",viewNum);
+        dataPart.put("comment_id", userName);
+        dataPart.put("comment_date","");
+        dataPart.put("comment_msg", commentDB);
+        dataPart.put("favor","0");
+        Retrofit retrofit=RetrofitHelper.getInstance();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+        Call<String> call=retrofitService.postDataComment(dataPart);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    Log.w("COMMENTITEM", dataPart.toString());
+                    Log.w("COMMENTITEM", response.body());
+                    AlertDialog.Builder builder=new AlertDialog.Builder(CommentActivity.this);
+                    builder.setMessage("댓글 업로드 성공");
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.w("call",t.getMessage());
+            }
+        });
+    }
+
 }

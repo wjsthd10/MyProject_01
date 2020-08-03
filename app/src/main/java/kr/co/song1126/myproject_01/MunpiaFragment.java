@@ -99,13 +99,10 @@ public class MunpiaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view=inflater.inflate(R.layout.munpia_layout,container, false);
-
         munpiaAdapter=new MunpiaAdapter(context,items);
         recyclerView=view.findViewById(R.id.munpia_recycler);
         spinner=view.findViewById(R.id.spinner01);
-
         FloatingActionButton actionButton=view.findViewById(R.id.munpiaAdd);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,13 +129,10 @@ public class MunpiaFragment extends Fragment {
                 }
             }
         });
-
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this.getActivity(), R.array.spinnerItem, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
         recyclerView.setAdapter(munpiaAdapter);
-
         return view;
     }
 }

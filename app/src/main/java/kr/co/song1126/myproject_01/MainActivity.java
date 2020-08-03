@@ -24,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.JsonParser;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
@@ -37,8 +38,13 @@ import com.kakao.util.exception.KakaoException;
 import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
 
 import static com.kakao.util.helper.Utility.getPackageInfo;
 
@@ -102,7 +108,18 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+        //==================================================================================
 
+        String str=getSharedPreferences("setting_json", MODE_PRIVATE).getString("setting_json",null);
+        if (str!=null){
+            String str2=str.substring(1, str.length()-1);
+            Log.e("Str2", str2);
+            String[] str3=str2.split(",");
+            //반복문으로 G.val에 add하기
+
+            G.val=str3;
+
+        }
     }
 
     @Override

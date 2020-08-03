@@ -3,6 +3,9 @@ package kr.co.song1126.myproject_01;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +19,10 @@ public class G {
     static SharedPreferences loginP=null;
     static boolean kakaoLoginIn=false;
     static boolean googleLoginIn=false;
+
+    static JSONArray jsonArray=new JSONArray();
+    static String[] val;
+
 
     static void bookViewsUpdate(String bookViewStr, String viewNum){
 
