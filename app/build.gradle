@@ -50,6 +50,9 @@ dependencies {
     // 카카오톡
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.29.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    
+    //***카톡 2버전    추가함
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 
     //파이어베이스 SDK
     implementation 'com.google.firebase:firebase-core:17.0.0'

@@ -71,6 +71,7 @@ public interface RetrofitService {
     @GET("/MyProject01/loadEventImg.php/")
     Call<ArrayList<EventViewItems>> loadEventMunpia();
 
+    //즐겨찾기
 
 
 

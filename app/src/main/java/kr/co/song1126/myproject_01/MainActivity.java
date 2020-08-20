@@ -53,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static int RC_SIGN_IN=9001;
 
+//    새로추가한 kakaologin Test
+//    todo 새로 SessionCallback쓰기
+    private SessionCallback sessionCallback=new SessionCallback(this);
+
+
+
 
 
     @Override
@@ -152,19 +158,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-    ISessionCallback sessionCallback=new ISessionCallback() {
-        @Override
-        public void onSessionOpened() {
-            //사용자의 정보 얻어오는 메소드 실행
-            requestUserInfo();
-        }
-
-        @Override
-        public void onSessionOpenFailed(KakaoException exception) {
-            Toast.makeText(MainActivity.this, "로그인 세션 연결 실패", Toast.LENGTH_SHORT).show();
-        }
-    };
+//      Session 별도 클래스에서 열었음
+//    ISessionCallback sessionCallback=new ISessionCallback() {
+//        @Override
+//        public void onSessionOpened() {
+//            //사용자의 정보 얻어오는 메소드 실행
+//            requestUserInfo();
+//        }
+//
+//        @Override
+//        public void onSessionOpenFailed(KakaoException exception) {
+//            Toast.makeText(MainActivity.this, "로그인 세션 연결 실패", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
     @Override
     protected void onDestroy() {

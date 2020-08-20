@@ -27,7 +27,10 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+//        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+//        변경한 코드
+        maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'}
+        
     }
 }
 

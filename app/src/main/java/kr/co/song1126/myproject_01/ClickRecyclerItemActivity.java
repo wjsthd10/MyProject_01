@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -65,7 +68,7 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
 
 
     //아이템 클릭시 받아온 넘버값
-    String viewNum;
+    static String viewNum;
     int favoriteNum;
 
     void loadData(){
@@ -300,20 +303,27 @@ public class ClickRecyclerItemActivity extends AppCompatActivity {
         //1. 공감버튼누르면 토스트로 알려주고 데이터 베이스에 공감 수 ++시키기 다시 누르면 --
         //2. 둘중에 하나라도 누르면 변경 불가능하게 만들기.
         if (checkedThumd==0){
-            Toast.makeText(this, "공감하셨습니다.", Toast.LENGTH_SHORT).show();
-            Glide.with(this).load(R.drawable.ic_thumb_up_red_24dp).into(thumd);
-            favoriteNum++;
+            Log.e("viewNum", viewNum);
+            Gson gson=new GsonBuilder().create();
+            //앱 켰을때 G에 저장하는 방법 찾기
+            G.favorite.add(viewNum);
+
+
+
             checkedThumd++;
         }else if (checkedThumd==1){
-            Toast.makeText(this, "공감을 취소 하셨습니다.", Toast.LENGTH_SHORT).show();
-            Glide.with(this).load(R.drawable.ic_thumb_up_24dp).into(thumd);
-            favoriteNum--;
+
             checkedThumd--;
         }
         //1. 서버로 보내기.(favoriteNum)==>
+//        서버에 저장 : 관심누른 아이템 번호의 배열, 누른사용자의 이메일.
+//        String으로 줌 배열로 나눠야함
+//        폰킬때 서버에서 아이템 번호 배열만 받아와서 G값에 넣기.
         //2. 폰에 저장?
 
     }
+
+
 
 
 
