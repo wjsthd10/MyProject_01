@@ -89,6 +89,9 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         return items.size();
     }
 
+//    public void notifyDataSetChanged() {
+//    }
+
     class VH extends RecyclerView.ViewHolder{
 
         TextView title;
@@ -97,7 +100,6 @@ public class KakaoAdapter extends RecyclerView.Adapter {
         TextView bookName;
         TextView date;
         TextView views;
-
 
         public VH(@NonNull View itemView) {
             super(itemView);

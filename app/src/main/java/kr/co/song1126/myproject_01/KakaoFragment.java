@@ -1,5 +1,6 @@
 package kr.co.song1126.myproject_01;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
